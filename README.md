@@ -1,1 +1,2 @@
-Book review project includes description and details of the book and ratings
+Book review project includes description and details of the book and ratings and reviews about the book. From the login and sign up page it takes to the search page where we tried to use supabase and API's our maximum as the database.
+By searching the particular book's title it takes to the next page where that book's information and author's name contains.Review page has the review about the readers and Rating page includes the rating and also has the review description box and rating palatte to help readers. to do this we use html,css and javascript
