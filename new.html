@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supabase Example</title>
+</head>
+<body>
+
+<h1>Supabase Example</h1>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+    // Initialize Supabase client
+    const supabaseUrl = 'https://oppcvkhqpqfhvtrgjrzl.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wcGN2a2hxcHFmaHZ0cmdqcnpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk0MzI1NzAsImV4cCI6MjAyNTAwODU3MH0.w-urZMZTM3uIiIXDBkHfDBBFv_b9wRIcJXLWk4B1RHs';
+    const supabase = supabase.createClient('https://oppcvkhqpqfhvtrgjrzl.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wcGN2a2hxcHFmaHZ0cmdqcnpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk0MzI1NzAsImV4cCI6MjAyNTAwODU3MH0.w-urZMZTM3uIiIXDBkHfDBBFv_b9wRIcJXLWk4B1RHs');
+
+    // Example usage: Fetch data from a table
+    async function fetchData() {
+        try {
+            const { data, error } = await supabase
+                .from('Bookie')
+                .select('*');
+            
+            if (error) {
+                console.error('Error fetching data:', error.message);
+            } else {
+                console.log('Fetched data:', data);
+                // Do something with the fetched data
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error.message);
+        }
+    }
+
+    // Example usage: Insert data into a table
+    async function insertData(data) {
+        try {
+            const { error } = await supabase
+                .from('Bookiee')
+                .insert(data);
+
+            if (error) {
+                console.error('Error inserting data:', error.message);
+            } else {
+                console.log('Data inserted successfully');
+            }
+        } catch (error) {
+            console.error('Error inserting data:', error.message);
+        }
+    }
+
+    // Example usage: Call the fetchData function
+    fetchData();
+</script>
+
+</body>
+</html>
+

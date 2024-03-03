@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rating and Review Page</title>
+    <style>
+        /* Add CSS styling here */
+    </style>
+</head>
+<body>
+    <h1>Product Name</h1>
+    
+    <!-- Rating Section -->
+    <h2>Rate this product:</h2>
+    <div>
+        <input type="radio" id="star5" name="rating" value="5"><label for="star5">5 stars</label>
+        <input type="radio" id="star4" name="rating" value="4"><label for="star4">4 stars</label>
+        <input type="radio" id="star3" name="rating" value="3"><label for="star3">3 stars</label>
+        <input type="radio" id="star2" name="rating" value="2"><label for="star2">2 stars</label>
+        <input type="radio" id="star1" name="rating" value="1"><label for="star1">1 star</label>
+    </div>
+
+    <!-- Review Section -->
+    <h2>Write a review:</h2>
+    <textarea rows="4" cols="50" placeholder="Write your review here"></textarea><br>
+    <button onclick="submitReview()">Submit Review</button>
+
+    <!-- Script for handling review submission -->
+    <script>
+        function submitReview() {
+            var rating = document.querySelector('input[name="rating"]:checked');
+            var reviewText = document.querySelector('textarea').value;
+
+            // Perform validation if needed
+
+            // Send the rating and review data to the server using AJAX or any other method
+            // Example:
+            // var data = { rating: rating.value, review: reviewText };
+            // Send data to server...
+            // On success, display a confirmation message or redirect the user.
+        }
+    </script>
+</body>
+</html>
+
+

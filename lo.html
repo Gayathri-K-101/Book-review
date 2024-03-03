@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      background-image : url('library.jpg');
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-size: 100% 100%;
+    }
+
+    .popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #000;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+    .container {
+      width: 300px;
+      margin: 0 auto;
+      margin-top: 100px;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    }
+    input[type="text"], input[type="password"], button[type="submit"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+    button[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form id="login-form">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required>
+      <button type="submit">Login</button>
+      <a href="signup.html">Sign Up</a>
+    </form>
+ 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+  <script>
+    const { createClient } = supabase;
+    const supabaseUrl = 'https://oppcvkhqpqfhvtrgjrzl.supabase.co';
+    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9wcGN2a2hxcHFmaHZ0cmdqcnpsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MDk0MzI1NzAsImV4cCI6MjAyNTAwODU3MH0.w-urZMZTM3uIiIXDBkHfDBBFv_b9wRIcJXLWk4B1RHs';
+
+    const supabase = createClient(supabaseUrl, supabaseKey);
+
+    document.getElementById('login-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      try {
+        const { user, session, error } = await supabase.auth.signIn({
+          email: username,
+          password: password,
+        });
+
+        if (error) {
+          console.error('Error logging in:', error.message);
+          return;
+        }
+
+        console.log('User logged in successfully:', user);
+        // Redirect or show success message here
+        window.location.href = 'search.html'; // Redirect to search page
+      } catch (error) {
+        console.error('Error logging in:', error.message);
+      }
+    });
+    const handleLogin = async (event) => {
+  event.preventDefault();
+  
+  const { email, password } = event.target.elements;
+  
+  if (!email.value || !password.value) {
+    alert('Please enter both email and password.'); // Display alert if email or password is missing
+    return;
+  }
+
+  try {
+    const { user, error } = await supabase.auth.signIn({
+      email: email.value,
+      password: password.value,
+    });
+
+    if (error) {
+      alert('Invalid email or password. Please try again.'); // Display alert if login fails
+    } else {
+      alert('Login successful!'); // Display alert if login is successful
+      // Redirect or perform other actions upon successful login
+    }
+  } catch (error) {
+    console.error('Error signing in:', error.message);
+    alert('An unexpected error occurred. Please try again later.'); // Display alert for unexpected errors
+  }
+};
+
+ 
+  </script>
+</body>
+</html>
